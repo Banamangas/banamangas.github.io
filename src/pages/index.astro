@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const featured = (await getCollection('projects'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Portfolio">
+  <section class="py-12">
+    <h1 class="text-4xl font-bold text-slate-900 dark:text-white mb-3">
+      Hi, I'm <span class="text-blue-600 dark:text-blue-400">Banamangas</span>
+    </h1>
+    <p class="text-xl text-slate-500 dark:text-slate-400 max-w-xl">
+      Data scientist & engineer building tools, pipelines, and APIs.
+    </p>
+    <div class="mt-6 flex gap-3">
+      <a href="/projects" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors">
+        View Projects
+      </a>
+      <a href="/about" class="px-4 py-2 border border-gray-300 dark:border-slate-600 hover:border-blue-400 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium transition-colors">
+        About Me
+      </a>
+    </div>
+  </section>
+
+  {featured.length > 0 && (
+    <section>
+      <h2 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Featured Projects</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        {featured.map((p) => (
+          <ProjectCard
+            slug={p.id}
+            title={p.data.title}
+            subtitle={p.data.subtitle}
+            tags={p.data.tags}
+            thumbnail={p.data.thumbnail}
+            featured={p.data.featured}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

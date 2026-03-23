@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --color-accent: #2563eb;
+  --color-accent-dark: #60a5fa;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}

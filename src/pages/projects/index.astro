@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="Projects — Portfolio">
+  <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Projects</h1>
+  <p class="text-slate-500 dark:text-slate-400 mb-8">{projects.length} project{projects.length !== 1 ? 's' : ''}</p>
+
+  <div class="grid sm:grid-cols-2 gap-6">
+    {projects.map((p) => (
+      <ProjectCard
+        slug={p.id}
+        title={p.data.title}
+        subtitle={p.data.subtitle}
+        tags={p.data.tags}
+        thumbnail={p.data.thumbnail}
+        featured={p.data.featured}
+      />
+    ))}
+  </div>
+</BaseLayout>

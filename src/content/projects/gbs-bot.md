@@ -33,7 +33,7 @@ Great Buildings are one of the core mechanics in FoE. Knowing how much it will c
 | `/invest <gb> <from> <to> [ratio]` | FP leveling cost breakdown across a level range |
 
 <figure>                                                                                  
-    <img src="../../images/projects/discord-bot-invest-command.png" alt="Use of the /invest command on Discord" />                       
+    <img src="/images/projects/discord-bot-invest-command.png" alt="Use of the /invest command on Discord" />                       
     <figcaption>Use of the /invest command on Discord</figcaption>
 </figure>
 

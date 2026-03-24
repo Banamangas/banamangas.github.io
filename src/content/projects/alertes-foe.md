@@ -38,7 +38,7 @@ Three recurring schedules, all in Paris timezone with automatic DST handling:
 Thursday messages vary based on ISO week number parity. The bot computes `datetime.isocalendar().week % 2` at send time - no manual tracking needed.
 
 <figure>                                                                                  
-    <img src="/images/projects/qi_alert_example.png" alt="Use of the /building command on Discord" />                       
+    <img src="../../images/projects/qi_alert_example.png" alt="Use of the /building command on Discord" />                       
     <figcaption>Example of a QI alert sent on an even week</figcaption>
 </figure>
 

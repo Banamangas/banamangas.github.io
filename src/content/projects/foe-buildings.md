@@ -42,14 +42,14 @@ The API is also used in the project [FoE Building Database - Streamlit App](/pro
 This comes as an additional way to have a better access to building stats in Forge of Empires. You can query any building of the game (in English or French language), define a specific era, and the statistics of the building will be displayed in a embed message, alongside the building image.
 
 <figure>                                                                                  
-    <img src="/images/projects/building_discord_command_example.png" alt="Use of the /building command on Discord" />                       
+    <img src="../../images/projects/building_discord_command_example.png" alt="Use of the /building command on Discord" />                       
     <figcaption>Use of the /building command on Discord</figcaption>
 </figure>
 
 There is also a slash command called `/consumables` which will list all buildings producing one specific consumable of your choice. A useful command, as the use of consumables in-game has become more and more important throughout the recent years.
 
 <figure>                                                                                  
-    <img src="/images/projects/discord-bot-consumable-command.png" alt="Use of the /consumables command on Discord" />                       
+    <img src="../../images/projects/discord-bot-consumable-command.png" alt="Use of the /consumables command on Discord" />                       
     <figcaption>Use of the /consumables command on Discord.</figcaption>
 </figure>
 

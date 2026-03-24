@@ -54,10 +54,10 @@ const remaining = featured.length > 3 ? `  +${featured.length - 3} more` : '';
 
     <!-- CTAs -->
     <div style="margin-top:1.5rem;display:flex;gap:10px;flex-wrap:wrap;">
-      <a href="/projects" style="display:inline-block;background:#238636;color:#fff;padding:8px 18px;border-radius:6px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='#2ea043'" onmouseout="this.style.background='#238636'">
+      <a href={`${import.meta.env.BASE_URL}projects`} style="display:inline-block;background:#238636;color:#fff;padding:8px 18px;border-radius:6px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='#2ea043'" onmouseout="this.style.background='#238636'">
         cd projects/
       </a>
-      <a href="/resume" style="display:inline-block;background:transparent;color:var(--cyan);border:1px solid var(--border);padding:8px 18px;border-radius:6px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:border-color 0.15s;" onmouseover="this.style.borderColor='var(--cyan)'" onmouseout="this.style.borderColor='var(--border)'">
+      <a href={`${import.meta.env.BASE_URL}resume`} style="display:inline-block;background:transparent;color:var(--cyan);border:1px solid var(--border);padding:8px 18px;border-radius:6px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:border-color 0.15s;" onmouseover="this.style.borderColor='var(--cyan)'" onmouseout="this.style.borderColor='var(--border)'">
         cat resume.pdf
       </a>
     </div>

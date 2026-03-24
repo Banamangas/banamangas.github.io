@@ -1,24 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/Timeline.astro';
+import SkillsJSON from '../components/SkillsJSON.astro';
+import { timeline } from '../data/timeline';
+import { skills } from '../data/skills';
+
+const experience = timeline.filter((e) => e.color !== 'purple');
+const education = timeline.filter((e) => e.color === 'purple');
 ---
 
 <BaseLayout title="Resume — Portfolio">
-  <div style="padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+
+  <!-- Header -->
+  <div style="padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;">
     <div>
-      <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px;">// cat resume.pdf</div>
-      <h1 style="color:var(--text);font-size:1.75rem;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:-0.02em;">Resume</h1>
+      <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px;">// cat resume.md</div>
+      <h1 style="color:var(--text);font-size:1.75rem;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:-0.02em;margin-bottom:4px;">Antoine Deval</h1>
+      <p style="color:var(--cyan);font-size:0.875rem;font-family:'JetBrains Mono',monospace;">Data Scientist &amp; Engineer</p>
     </div>
     <a
       href={`${import.meta.env.BASE_URL}resume.pdf`}
       download
-      style="background:#238636;color:#fff;padding:8px 18px;border-radius:6px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:background 0.15s;"
+      style="background:#238636;color:#fff;padding:8px 18px;border-radius:6px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:background 0.15s;flex-shrink:0;"
       onmouseover="this.style.background='#2ea043'"
       onmouseout="this.style.background='#238636'"
     >
       ↓ Download PDF
     </a>
   </div>
-  <p style="color:var(--muted);font-size:0.875rem;margin-top:1.5rem;">
-    Place your resume at <code style="font-family:'JetBrains Mono',monospace;font-size:0.8125rem;color:var(--purple);background:rgba(210,168,255,0.1);border:1px solid rgba(210,168,255,0.2);padding:1px 6px;border-radius:4px;">public/resume.pdf</code> and it will be served here.
-  </p>
+
+  <!-- Experience -->
+  <section style="padding:2rem 0;border-bottom:1px solid var(--border);">
+    <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:1.25rem;">// experience</div>
+    <Timeline entries={experience} />
+  </section>
+
+  <!-- Education -->
+  <section style="padding:2rem 0;border-bottom:1px solid var(--border);">
+    <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:1.25rem;">// education</div>
+    <Timeline entries={education} />
+  </section>
+
+  <!-- Skills -->
+  <section style="padding:2rem 0;">
+    <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:1.25rem;">// skills.json</div>
+    <SkillsJSON skills={skills} />
+  </section>
+
 </BaseLayout>

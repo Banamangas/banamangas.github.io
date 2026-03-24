@@ -10,10 +10,10 @@ export interface Repo {
 
 export const repos: Repo[] = [
   {
-    name: 'repo-name',
-    description: 'Short description of what this repo does.',
-    href: 'https://github.com/Banamangas/repo-name',
+    name: 'FoE-Buildings-Database',
+    description: 'Streamlit web app for analyzing and comparing buildings in the browser game Forge of Empires. Connected to a REST API for automatic daily updates.',
+    href: 'https://github.com/Banamangas/FoE-Buildings-Database',
     language: 'Python',
-    stars: 0,
+    stars: 1,
   },
 ];

@@ -1,6 +1,6 @@
 ---
 title: "Great Buildings Bot"
-subtitle: "Discord slash-command bot for Great Building lookups and FP investment ROI analysis"
+subtitle: "Discord slash-command bot for Great Building lookups and FP leveling cost calculations"
 date: 2024-11-01
 tags: [Python, Discord.py, Flask, difflib]
 thumbnail: "/images/projects/gbs-bot.png"
@@ -17,33 +17,31 @@ stats:
     value: "EN / FR"
 ---
 
-A Discord bot that gives Forge of Empires players instant access to Great Building statistics and investment profitability calculations. Players can look up any GB's level costs and rewards, then run an ROI analysis across a level range at a custom FP value ratio — directly from Discord, with interactive buttons for deeper exploration.
+A Discord bot that gives Forge of Empires players instant access to Great Building FP costs, medals and blueprints. Players can look up any GB's level costs and rewards — directly from Discord, with interactive buttons for deeper exploration.
 
 ## The Problem
 
-Great Buildings are the endgame progression mechanic in FoE. Whether a given FP investment is profitable depends on the FP value ratio your guild uses — a metric that changes over time. Players had to use external spreadsheets or mental arithmetic to evaluate positions. There was no fast, in-Discord tool.
+Great Buildings are one of the core mechanics in FoE. Knowing how much it will cost to level a Great Building is sometimes tricky without the right tools (like FoE-Helper). FoE-Helper and foe.tools solve this, but are either a browser extension or a website — not always accessible. Having a Discord slash command bot means the information is one command away, wherever you are.
 
 ## Commands
 
 | Command | What it does |
 |---------|-------------|
-| `/gb <name>` | Looks up a GB: age, size, build cost, description |
+| `/gb <name>` | Looks up a GB: age, size, build cost |
 | `/gb_list [age]` | Lists all GBs, optionally filtered by age |
 | `/gb_level <name> <level>` | Level cost and rewards with Previous/Next buttons |
-| `/invest <gb> <from> <to> [ratio]` | ROI analysis across a level range with position comparison |
+| `/invest <gb> <from> <to> [ratio]` | FP leveling cost breakdown across a level range |
 
 All GB names support autocomplete with fuzzy matching.
 
-## Investment Calculator
+## Leveling Cost Calculator
 
-The `/invest` command computes profitability for every reward position at each level in a range:
+The `/invest` command shows what it costs a GB owner to level across a range, accounting for the FP that investors contribute:
 
-```
-Net Profit = (Total Reward FP × Ratio) - Total Level Cost
-ROI % = (Net Profit / Total Level Cost) × 100
-```
+FPs Saved = Sum of all position reward FPs × Ratio
+User Cost = Total Level Cost − FPs Saved
 
-Results are colour-coded in Discord embeds (green = profit, red = loss) and ranked by ROI. The FP ratio defaults to 1.9 but can be overridden via a Discord modal (0.0–2.0 range).
+**FPs Saved** is the total FP contributed by investors — each position's reward FP multiplied by the ratio, representing what investors put in to secure that position at the current market rate. **User Cost** is what the owner pays net after those contributions. Results are colour-coded in Discord embeds (green when investor contributions exceed total cost, red otherwise). The FP ratio defaults to 1.9 but can be overridden via a Discord modal (0.0–2.0 range). Bonus rewards per position (blueprints, medals) are also totalled across the full level range.
 
 ## Technical Highlights
 

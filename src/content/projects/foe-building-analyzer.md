@@ -1,5 +1,5 @@
 ---
-title: "FoE Building Database - Streamlit App"
+title: "FoE Building Analyzer - Streamlit App"
 subtitle: "Interactive Streamlit web app for analyzing and comparing Forge of Empires buildings"
 date: 2025-03-01
 tags: [Python, Streamlit, Pandas, NumPy, Plotly, AG-Grid, Pillow]

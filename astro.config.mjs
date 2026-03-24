@@ -7,7 +7,6 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://banamangas.github.io',
-  base: '/portfolio/',
   vite: {
     plugins: [tailwindcss()]
   },

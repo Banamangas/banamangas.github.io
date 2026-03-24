@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import ThemeToggle from '../components/ThemeToggle.astro';
 
 interface Props {
   title: string;
@@ -19,31 +18,40 @@ const { title, description = 'Data Science & Engineering Portfolio' } = Astro.pr
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
-  <body class="bg-gray-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col">
-    <nav class="border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 sticky top-0 z-10">
-      <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
-        <a href="/" class="font-semibold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-          Portfolio
-        </a>
-        <div class="flex items-center gap-6">
-          <a href="/projects" class="text-sm text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</a>
-          <a href="/about" class="text-sm text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
-          <a href="/resume" class="text-sm text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Resume</a>
-          <ThemeToggle />
+  <body style="background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;">
+
+    <!-- Terminal window nav -->
+    <nav style="background:var(--surface-2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;">
+      <div style="max-width:56rem;margin:0 auto;padding:0 1.5rem;height:3rem;display:flex;align-items:center;gap:1rem;">
+        <!-- Traffic light dots -->
+        <div style="display:flex;gap:6px;flex-shrink:0;">
+          <a href="/" style="width:12px;height:12px;border-radius:50%;background:#ff5f57;display:block;" title="Home"></a>
+          <div style="width:12px;height:12px;border-radius:50%;background:#febc2e;"></div>
+          <div style="width:12px;height:12px;border-radius:50%;background:#28c840;"></div>
+        </div>
+        <!-- Path breadcrumb -->
+        <div style="flex:1;text-align:center;color:var(--muted);font-size:0.6875rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;">
+          ~/portfolio
+        </div>
+        <!-- Nav links -->
+        <div style="display:flex;gap:1.5rem;flex-shrink:0;">
+          <a href="/projects" style="color:var(--cyan);font-size:0.6875rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--cyan)'">projects</a>
+          <a href="/about" style="color:var(--cyan);font-size:0.6875rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--cyan)'">about</a>
+          <a href="/resume" style="color:var(--cyan);font-size:0.6875rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--cyan)'">resume</a>
         </div>
       </div>
     </nav>
-    <main class="max-w-4xl mx-auto px-4 py-12 flex-1 w-full">
+
+    <main style="max-width:56rem;margin:0 auto;padding:3rem 1.5rem;flex:1;width:100%;">
       <slot />
     </main>
-    <footer class="border-t border-gray-200 dark:border-slate-700 text-center text-sm text-slate-500 py-6">
-      Built with Astro & Tailwind CSS
+
+    <footer style="border-top:1px solid var(--border);text-align:center;font-size:0.75rem;color:var(--muted);padding:1.5rem;font-family:'JetBrains Mono',monospace;">
+      <span style="color:var(--green);">banamangas@portfolio</span><span style="color:var(--text);">:~$</span> <span style="color:var(--muted);">built with Astro & Tailwind CSS</span>
     </footer>
+
   </body>
 </html>

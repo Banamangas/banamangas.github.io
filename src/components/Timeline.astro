@@ -1,0 +1,56 @@
+---
+import type { TimelineEntry } from '../data/timeline';
+
+interface Props {
+  entries: TimelineEntry[];
+}
+
+const { entries } = Astro.props;
+
+const dotColors: Record<string, string> = {
+  green: 'var(--green)',
+  cyan: 'var(--cyan)',
+  purple: 'var(--purple)',
+  orange: 'var(--orange)',
+};
+
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function formatPeriod(period: string): string {
+  return period.split(' - ').map(p => {
+    const [mm, yyyy] = p.trim().split('-');
+    const month = MONTHS[parseInt(mm, 10) - 1] ?? mm;
+    return `${month} ${yyyy}`;
+  }).join(' — ');
+}
+---
+
+<div style="position:relative;max-width:600px;">
+  <!-- Vertical line -->
+  <div style="position:absolute;left:4px;top:8px;bottom:8px;width:1px;background:var(--border);"></div>
+
+  {entries.map((entry) => {
+    const dotColor = dotColors[entry.color ?? 'cyan'];
+    return (
+      <div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:28px;position:relative;">
+        <!-- Dot -->
+        <div style={`width:10px;height:10px;border-radius:50%;background:${dotColor};border:2px solid var(--bg);flex-shrink:0;margin-top:5px;position:relative;z-index:1;`}></div>
+        <!-- Content -->
+        <div style="flex:1;">
+          <div style="color:var(--muted);font-size:0.6875rem;font-family:'JetBrains Mono',monospace;margin-bottom:4px;">
+            {formatPeriod(entry.year)}
+          </div>
+          <div style="color:var(--text);font-size:0.8125rem;font-weight:600;font-family:'JetBrains Mono',monospace;margin-bottom:2px;">
+            {entry.title}
+          </div>
+          {entry.location && (
+            <div style="color:var(--cyan);font-size:0.6875rem;font-family:'JetBrains Mono',monospace;margin-bottom:4px;opacity:0.8;">
+              {entry.location}
+            </div>
+          )}
+          <div style="color:var(--muted);font-size:0.75rem;line-height:1.6;">{entry.description}</div>
+        </div>
+      </div>
+    );
+  })}
+</div>

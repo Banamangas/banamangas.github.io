@@ -1,14 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/Timeline.astro';
+import ContactLinks from '../components/ContactLinks.astro';
+import type { ContactLink } from '../components/ContactLinks.astro';
+import { timeline } from '../data/timeline';
+
+const contactLinks: ContactLink[] = [
+  {
+    icon: '⬡',
+    label: 'github.com/Banamangas',
+    href: 'https://github.com/Banamangas',
+    description: 'Code, projects, contributions',
+  },
+];
 ---
 
 <BaseLayout title="About — Portfolio">
-  <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">About</h1>
-  <div class="prose prose-slate dark:prose-invert max-w-none">
-    <p>Data scientist and engineer based on the web. I build data pipelines, APIs, and tools that turn raw data into something useful.</p>
-    <h2>Get in touch</h2>
-    <p>
-      Find me on <a href="https://github.com/Banamangas" target="_blank" rel="noopener noreferrer">GitHub</a>.
+
+  <!-- Header -->
+  <section style="padding:2.5rem 0 2rem;border-bottom:1px solid var(--border);">
+    <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:10px;">// cat about.md</div>
+    <h1 style="color:var(--text);font-size:1.75rem;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:-0.02em;margin-bottom:12px;">Banamangas</h1>
+    <p style="color:var(--text-secondary);font-size:0.9375rem;line-height:1.8;max-width:540px;">
+      Data scientist and engineer. I work at the intersection of infrastructure and insight — building the pipelines, APIs, and tools that make data useful. I care about clean systems, reproducible results, and shipping things that actually run in production.
     </p>
-  </div>
+  </section>
+
+  <!-- Timeline -->
+  <section style="padding:2rem 0;border-bottom:1px solid var(--border);">
+    <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:1.25rem;">// git log --oneline --career</div>
+    <Timeline entries={timeline} />
+  </section>
+
+  <!-- Contact -->
+  <section style="padding:2rem 0;">
+    <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:1.25rem;">// contact</div>
+    <ContactLinks links={contactLinks} />
+  </section>
+
 </BaseLayout>

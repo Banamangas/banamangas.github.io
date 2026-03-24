@@ -1,0 +1,28 @@
+---
+import type { SkillsData } from '../data/skills';
+
+interface Props {
+  skills: SkillsData;
+}
+
+const { skills } = Astro.props;
+const entries = Object.entries(skills);
+---
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:0.8125rem;line-height:1.9;width:fit-content;max-width:100%;">
+  <span style="color:var(--text);">{'{'}</span>
+  {entries.map(([category, tools], i) => (
+    <div style="padding-left:20px;">
+      <span style="color:var(--cyan);">"{category}"</span>
+      <span style="color:var(--text);">: [</span>
+      {tools.map((tool, j) => (
+        <span>
+          <span style="color:var(--orange);">"{tool}"</span>
+          {j < tools.length - 1 && <span style="color:var(--text);">, </span>}
+        </span>
+      ))}
+      <span style="color:var(--text);">]{i < entries.length - 1 ? ',' : ''}</span>
+    </div>
+  ))}
+  <span style="color:var(--text);">{'}'}</span>
+</div>

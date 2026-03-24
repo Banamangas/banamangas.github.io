@@ -1,16 +1,76 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@variant dark (&:where(.dark, .dark *));
-
-@theme {
-  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --color-accent: #2563eb;
-  --color-accent-dark: #60a5fa;
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-2: #21262d;
+  --border: #30363d;
+  --text: #e6edf3;
+  --muted: #7d8590;
+  --text-secondary: #c9d1d9;
+  --green: #3fb950;
+  --cyan: #79c0ff;
+  --purple: #d2a8ff;
+  --orange: #ffa657;
+  --red: #f85149;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
   }
+
+  body {
+    color: var(--text);
+  }
+
+  a {
+    color: var(--cyan);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Prose overrides for terminal theme */
+  .prose {
+    --tw-prose-body: var(--text-secondary);
+    --tw-prose-headings: var(--text);
+    --tw-prose-links: var(--cyan);
+    --tw-prose-bold: var(--text);
+    --tw-prose-code: var(--purple);
+    --tw-prose-hr: var(--border);
+    --tw-prose-quotes: var(--muted);
+    --tw-prose-captions: var(--muted);
+    --tw-prose-counters: var(--muted);
+    --tw-prose-bullets: var(--muted);
+    color: var(--text-secondary);
+  }
+
+  code {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.875em;
+    color: var(--purple);
+  }
+}
+
+/* Typewriter animation used by homepage hero */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

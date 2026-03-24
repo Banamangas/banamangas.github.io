@@ -12,38 +12,60 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const { title, subtitle, tags, github, live, stats } = project.data;
+const slug = project.id;
 ---
 
 <BaseLayout title={`${title} — Portfolio`} description={subtitle}>
   <article>
-    <header class="mb-8">
-      <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">{title}</h1>
-      <p class="text-lg text-slate-500 dark:text-slate-400 mb-4">{subtitle}</p>
 
-      <div class="flex flex-wrap gap-1.5 mb-4">
+    <!-- Header -->
+    <header style="padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:0;">
+      <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.1em;font-family:'JetBrains Mono',monospace;margin-bottom:10px;">// projects/{slug}/README.md</div>
+      <h1 style="color:var(--text);font-size:1.75rem;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:-0.02em;margin-bottom:8px;">{title}</h1>
+      <p style="color:var(--muted);font-size:0.9375rem;margin-bottom:16px;">{subtitle}</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;">
         {tags.map((tag) => <TechBadge tag={tag} />)}
       </div>
 
-      <div class="flex gap-3">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
         {github && (
           <a href={github} target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-gray-300 dark:border-slate-600 rounded-lg hover:border-blue-400 text-slate-700 dark:text-slate-300 transition-colors">
-            GitHub
+             style="background:var(--surface);border:1px solid var(--border);color:var(--cyan);padding:7px 16px;border-radius:6px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:border-color 0.15s;"
+             onmouseover="this.style.borderColor='var(--cyan)'" onmouseout="this.style.borderColor='var(--border)'">
+            ⬡ GitHub
           </a>
         )}
         {live && (
           <a href={live} target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-            Live Demo
+             style="background:#238636;color:#fff;padding:7px 16px;border-radius:6px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;text-decoration:none;transition:background 0.15s;"
+             onmouseover="this.style.background='#2ea043'" onmouseout="this.style.background='#238636'">
+            ↗ Live Demo
           </a>
         )}
       </div>
     </header>
 
-    {stats && stats.length > 0 && <StatsGrid stats={stats} />}
+    <!-- Stats JSON -->
+    {stats && stats.length > 0 && (
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--border);">
+        <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:14px;">// stats.json</div>
+        <StatsGrid stats={stats} />
+      </div>
+    )}
 
-    <div class="prose prose-slate dark:prose-invert max-w-none">
-      <Content />
+    <!-- Prose -->
+    <div style="padding:1.5rem 0;">
+      <div style="color:var(--muted);font-size:0.6875rem;letter-spacing:0.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;">// case-study</div>
+      <div class="prose prose-invert max-w-none">
+        <Content />
+      </div>
     </div>
+
+    <!-- Back link -->
+    <div style="padding:1rem 0;border-top:1px solid var(--border);">
+      <a href="/projects" style="color:var(--muted);font-size:0.75rem;font-family:'JetBrains Mono',monospace;text-decoration:none;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--muted)'">← cd ../</a>
+    </div>
+
   </article>
 </BaseLayout>

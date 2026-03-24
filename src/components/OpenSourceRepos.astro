@@ -1,0 +1,54 @@
+---
+import type { Repo } from '../data/repos';
+
+interface Props {
+  repos: Repo[];
+}
+
+const { repos } = Astro.props;
+
+const langColors: Record<string, string> = {
+  Python: 'purple',
+  SQL: 'orange',
+  TypeScript: 'cyan',
+  JavaScript: 'cyan',
+  Bash: 'green',
+};
+
+const colorMap: Record<string, { bg: string; text: string; border: string }> = {
+  purple: { bg: 'rgba(210,168,255,0.1)', text: '#d2a8ff', border: 'rgba(210,168,255,0.3)' },
+  orange: { bg: 'rgba(255,166,87,0.1)',  text: '#ffa657', border: 'rgba(255,166,87,0.3)'  },
+  cyan:   { bg: 'rgba(121,192,255,0.1)', text: '#79c0ff', border: 'rgba(121,192,255,0.3)' },
+  green:  { bg: 'rgba(63,185,80,0.1)',   text: '#3fb950', border: 'rgba(63,185,80,0.3)'   },
+  muted:  { bg: 'rgba(125,133,144,0.1)', text: '#7d8590', border: 'rgba(125,133,144,0.3)' },
+};
+---
+
+<div style="display:flex;flex-direction:column;gap:10px;max-width:560px;">
+  {repos.map((repo) => {
+    const c = colorMap[langColors[repo.language] ?? 'muted'];
+    return (
+      <a
+        href={repo.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;text-decoration:none;transition:border-color 0.15s;"
+        onmouseover="this.style.borderColor='var(--cyan)'"
+        onmouseout="this.style.borderColor='var(--border)'"
+      >
+        <div>
+          <div style="color:var(--cyan);font-size:0.8125rem;font-family:'JetBrains Mono',monospace;margin-bottom:3px;">⬡ {repo.name}</div>
+          <div style="color:var(--muted);font-size:0.75rem;">{repo.description}</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;flex-shrink:0;margin-left:16px;">
+          {repo.stars !== undefined && repo.stars > 0 && (
+            <span style="color:var(--muted);font-size:0.6875rem;font-family:'JetBrains Mono',monospace;">★ {repo.stars}</span>
+          )}
+          <span style={`background:${c.bg};color:${c.text};border:1px solid ${c.border};padding:2px 8px;border-radius:4px;font-size:0.6875rem;font-family:'JetBrains Mono',monospace;`}>
+            {repo.language}
+          </span>
+        </div>
+      </a>
+    );
+  })}
+</div>

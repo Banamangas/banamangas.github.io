@@ -14,7 +14,7 @@ A production-grade system that **scrapes, parses, stores, and serves** building 
 
 ## The Problem
 
-Forge of Empires has **1,082 buildings**, each with up to **22 era-specific variants** and **80+ attributes** (production rates, boosts, military units, consumables). This data lives in obfuscated, deeply nested game files with no public API. Players and community tool builders had no reliable, structured way to access or compare building stats.
+Forge of Empires has **1,082 buildings**, each with up to **22 era-specific variants** and **up to 80+ attributes** (production rates, boosts, military units, consumables). This data lives in obfuscated, deeply nested game files with no public API. Players and community tool builders had no reliable, structured way to access or compare building stats.
 
 ---
 
